@@ -13,10 +13,9 @@ jobs:
     if: github.repository == 'demisto/content' && startsWith(github.head_ref, 'contrib/') == false
     steps:
       - name: Print out context
-          run: |
-            echo "$GITHUB_CONTEXT"
-          env:
-            GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
@@ -29,11 +28,7 @@ jobs:
       - name: Check pack and request review
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          BRANCH_NAME: ${{ github.head_ref }}
-          SENDGRID_EMAIL_API_KEY: ${{ secrets.SENDGRID_EMAIL_API_KEY }}
-        if: env.SENDGRID_EMAIL_API_KEY
         run: |
-          echo "PR number is: $PR_NUMBER"
-          echo "Target branch name is: $BRANCH_NAME"
+          echo "Hi!"
+
 
